@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainScreen"
+            android:name=".MainMenu"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -27,31 +27,27 @@
             android:label="Heatmap"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".ChartSelectionMenu"
+            android:label="ChartMenu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".PieChartMain"
             android:label="PieCharts"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LineChartMain"
+            android:name=".StolenBicyclesPerMonth"
             android:label="LineChart"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".BarChartMain"
+            android:name=".StolenBicyclesAndBikeContainersPerMonth"
             android:label="BarChart"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".HoodBarChart"
+            android:name=".NeighbourhoodsWithMostBikeContainers"
             android:label="BarChart Containers"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".DataLists" />
-        <activity android:name=".DeelgemMenu" />
-        <activity
-            android:name=".ColorPieChart"
-            android:label="@string/title_activity_color_pie_chart"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ChartMenu"
-            android:label="ChartMenu"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".DeelgemMenu"></activity>
     </application>
 
 </manifest>

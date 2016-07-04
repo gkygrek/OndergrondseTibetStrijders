@@ -47,9 +47,9 @@ public class DeelgemMenu extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, BarChartMain.class);
+                Intent intent = new Intent(context, StolenBicyclesAndBikeContainersPerMonth.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                BarChartMain.currentDeelgem = gem;
+                StolenBicyclesAndBikeContainersPerMonth.currentDeelgem = gem;
                 context.startActivity(intent);
             }
         });
