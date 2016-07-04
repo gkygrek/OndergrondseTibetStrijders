@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class PieChartMain extends AppCompatActivity {
+public class ColorPieChart extends AppCompatActivity {
 
     private RelativeLayout mainLayout;
     private PieChart mChart;
@@ -37,12 +37,12 @@ public class PieChartMain extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_piechartmain);
+        setContentView(R.layout.activity_color_pie_chart);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         ArrayList<Float> yData = new ArrayList();
-        Set set = new HashSet(DataLists.merkList);
+        Set set = new HashSet(DataLists.kleurList);
         ArrayList<String> uniqueList = new ArrayList(set);
 //        for (int i = 0; i < uniqueList.size(); i++)
 //        {
@@ -67,9 +67,9 @@ public class PieChartMain extends AppCompatActivity {
 
         for (int g = 0; g < uniqueList.size(); g++)
         {
-            for (int i = 1; i < DataLists.merkList.size(); i++)
+            for (int i = 1; i < DataLists.kleurList.size(); i++)
             {
-                if (uniqueList.get(g).equals(DataLists.merkList.get(i)))
+                if (uniqueList.get(g).equals(DataLists.kleurList.get(i)))
                 {
                     x = x + 1;
                 }
@@ -103,7 +103,7 @@ public class PieChartMain extends AppCompatActivity {
                 if (e == null)
                     return;
 
-                Toast.makeText(PieChartMain.this,
+                Toast.makeText(ColorPieChart.this,
                         //legendValues[e.getXIndex()] + " = " + e.getVal() + "%", Toast.LENGTH_SHORT).show();
                         legendValues[e.getXIndex()] + " = " + e.getVal() + "= total amount", Toast.LENGTH_SHORT).show();
             }
