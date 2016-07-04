@@ -23,7 +23,9 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class ColorPieChart extends AppCompatActivity {
@@ -41,42 +43,50 @@ public class ColorPieChart extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Map<String, Float> kleuren = new HashMap<>();
+
+        for (int i = 0; i < DataLists.kleurList.size(); i++) {
+            if (!(kleuren.containsKey(DataLists.kleurList.get(i)))) {
+                kleuren.put(DataLists.kleurList.get(i), 0f);
+            }
+            Float amount = kleuren.get(DataLists.kleurList.get(i));
+            if (amount != null) {
+                Float newAmount = amount + 1;
+                kleuren.put(DataLists.kleurList.get(i), newAmount);
+            }
+        }
+
+        HashMap<String, Float> maxKleuren = new HashMap<>();
+
+        for (int i = 0; i < 10; i++) {
+            Float maxValue = 0f;
+            String kleursoorten = "null";
+            for (Map.Entry<String, Float> entry : kleuren.entrySet()) {
+                String key = entry.getKey();
+                Float value = entry.getValue();
+                if (value > maxValue) {
+                    maxValue = value;
+                    kleursoorten = key;
+                }
+            }
+            maxKleuren.put(kleursoorten, maxValue);
+            kleuren.remove(kleursoorten);
+        }
+
+
         ArrayList<Float> yData = new ArrayList();
-        Set set = new HashSet(DataLists.kleurList);
-        ArrayList<String> uniqueList = new ArrayList(set);
-//        for (int i = 0; i < uniqueList.size(); i++)
-//        {
-//            uniqueList.set(i, uniqueList.get(i).replaceAll(" ", ""));
-//
-//        }
-//        for (int i = 0; i < uniqueList.size(); i++)
-//        {
-//            System.out.println(uniqueList.get(i));
-//            if (uniqueList.get(i).length() < 3)
-//            {
-//                System.out.println(uniqueList.get(i));
-//                uniqueList.remove(uniqueList.get(i));
-//            }
-//
-//        }
+        //Set set = new HashSet(DataLists.kleurlist);
+        ArrayList<String> uniqueList = new ArrayList<String>();
+        for (Map.Entry<String, Float> entry : maxKleuren.entrySet()) {
+            uniqueList.add(entry.getKey());
+            yData.add(entry.getValue());
+        }
+
         Float x = 0F;
 
         String[] xData = new String[uniqueList.size()];
         xData = uniqueList.toArray(xData);
         final String[] legendValues = xData;
-
-        for (int g = 0; g < uniqueList.size(); g++)
-        {
-            for (int i = 1; i < DataLists.kleurList.size(); i++)
-            {
-                if (uniqueList.get(g).equals(DataLists.kleurList.get(i)))
-                {
-                    x = x + 1;
-                }
-            }
-            yData.add(x);
-            x = 0F;
-        }
 
         Float[] pieChartValues = new Float[yData.size()];
         pieChartValues = yData.toArray(pieChartValues);
@@ -133,12 +143,12 @@ public class ColorPieChart extends AppCompatActivity {
         for (int i = 0; i < legendValues.length; i++)
             xVals.add(legendValues[i]);
 
-        PieDataSet dataSet = new PieDataSet(yVals1, "Market Share");
+        PieDataSet dataSet = new PieDataSet(yVals1, "Kleuren");
         dataSet.setSliceSpace(3);
         dataSet.setSelectionShift(5);
 
         ArrayList<Integer> colors = new ArrayList<Integer>();
-
+        
         for (int c : ColorTemplate.VORDIPLOM_COLORS)
             colors.add(c);
 
