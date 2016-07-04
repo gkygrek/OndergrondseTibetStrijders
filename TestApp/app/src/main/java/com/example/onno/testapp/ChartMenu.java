@@ -19,7 +19,7 @@ public class ChartMenu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chartmenu);
+        setContentView(R.layout.activity_chart_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -27,7 +27,7 @@ public class ChartMenu extends AppCompatActivity {
         Button buttonLineChart = (Button) findViewById(R.id.buttonLineChart);
         Button buttonBarChart = (Button) findViewById(R.id.buttonBarChart);
         Button buttonNeighbourhoudChart = (Button) findViewById(R.id.buttonNeighbouurhoudChart);
-
+        Button buttonColorChart = (Button) findViewById(R.id.buttonColorChart);
         context = this.getApplicationContext();
 
         buttonPieChart.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +58,14 @@ public class ChartMenu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, HoodBarChart.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
+        buttonColorChart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ColorPieChart.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
