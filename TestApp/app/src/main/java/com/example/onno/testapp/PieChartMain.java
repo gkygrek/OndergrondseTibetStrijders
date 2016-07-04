@@ -23,7 +23,9 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class PieChartMain extends AppCompatActivity {
@@ -41,42 +43,50 @@ public class PieChartMain extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Map<String, Float> merken = new HashMap<>();
+
+        for (int i = 0; i < DataLists.merkList.size(); i++) {
+            if (!(merken.containsKey(DataLists.merkList.get(i)))) {
+                merken.put(DataLists.merkList.get(i), 0f);
+            }
+            Float amount = merken.get(DataLists.merkList.get(i));
+            if (amount != null) {
+                Float newAmount = amount + 1;
+                merken.put(DataLists.merkList.get(i), newAmount);
+            }
+        }
+
+        HashMap<String, Float> maxMerken = new HashMap<>();
+
+        for (int i = 0; i < 10; i++) {
+            Float maxValue = 0f;
+            String merksoorten = "null";
+            for (Map.Entry<String, Float> entry : merken.entrySet()) {
+                String key = entry.getKey();
+                Float value = entry.getValue();
+                if (value > maxValue) {
+                    maxValue = value;
+                    merksoorten = key;
+                }
+            }
+            maxMerken.put(merksoorten, maxValue);
+            merken.remove(merksoorten);
+        }
+
+
         ArrayList<Float> yData = new ArrayList();
-        Set set = new HashSet(DataLists.merkList);
-        ArrayList<String> uniqueList = new ArrayList(set);
-//        for (int i = 0; i < uniqueList.size(); i++)
-//        {
-//            uniqueList.set(i, uniqueList.get(i).replaceAll(" ", ""));
-//
-//        }
-//        for (int i = 0; i < uniqueList.size(); i++)
-//        {
-//            System.out.println(uniqueList.get(i));
-//            if (uniqueList.get(i).length() < 3)
-//            {
-//                System.out.println(uniqueList.get(i));
-//                uniqueList.remove(uniqueList.get(i));
-//            }
-//
-//        }
+        //Set set = new HashSet(DataLists.merkList);
+        ArrayList<String> uniqueList = new ArrayList<String>();
+        for (Map.Entry<String, Float> entry : maxMerken.entrySet()) {
+            uniqueList.add(entry.getKey());
+            yData.add(entry.getValue());
+        }
+
         Float x = 0F;
 
         String[] xData = new String[uniqueList.size()];
         xData = uniqueList.toArray(xData);
         final String[] legendValues = xData;
-
-        for (int g = 0; g < uniqueList.size(); g++)
-        {
-            for (int i = 1; i < DataLists.merkList.size(); i++)
-            {
-                if (uniqueList.get(g).equals(DataLists.merkList.get(i)))
-                {
-                    x = x + 1;
-                }
-            }
-            yData.add(x);
-            x = 0F;
-        }
 
         Float[] pieChartValues = new Float[yData.size()];
         pieChartValues = yData.toArray(pieChartValues);
@@ -126,14 +136,14 @@ public class PieChartMain extends AppCompatActivity {
         ArrayList<Entry> yVals1 = new ArrayList<Entry>();
 
         for (int i = 0; i < pieChartValues.length; i++)
-            yVals1.add(new Entry(pieChartValues[i], i));
+        yVals1.add(new Entry(pieChartValues[i], i));
 
         ArrayList<String> xVals = new ArrayList<String>();
 
         for (int i = 0; i < legendValues.length; i++)
             xVals.add(legendValues[i]);
 
-        PieDataSet dataSet = new PieDataSet(yVals1, "Market Share");
+        PieDataSet dataSet = new PieDataSet(yVals1, "Merken");
         dataSet.setSliceSpace(3);
         dataSet.setSelectionShift(5);
 
