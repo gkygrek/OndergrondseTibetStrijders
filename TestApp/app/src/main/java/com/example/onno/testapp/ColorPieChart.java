@@ -28,7 +28,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class PieChartMain extends AppCompatActivity {
+public class ColorPieChart extends AppCompatActivity {
 
     private RelativeLayout mainLayout;
     private PieChart mChart;
@@ -39,45 +39,45 @@ public class PieChartMain extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_piechartmain);
+        setContentView(R.layout.activity_color_pie_chart);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Map<String, Float> merken = new HashMap<>();
+        Map<String, Float> kleuren = new HashMap<>();
 
-        for (int i = 0; i < DataLists.merkList.size(); i++) {
-            if (!(merken.containsKey(DataLists.merkList.get(i)))) {
-                merken.put(DataLists.merkList.get(i), 0f);
+        for (int i = 0; i < DataLists.kleurList.size(); i++) {
+            if (!(kleuren.containsKey(DataLists.kleurList.get(i)))) {
+                kleuren.put(DataLists.kleurList.get(i), 0f);
             }
-            Float amount = merken.get(DataLists.merkList.get(i));
+            Float amount = kleuren.get(DataLists.kleurList.get(i));
             if (amount != null) {
                 Float newAmount = amount + 1;
-                merken.put(DataLists.merkList.get(i), newAmount);
+                kleuren.put(DataLists.kleurList.get(i), newAmount);
             }
         }
 
-        HashMap<String, Float> maxMerken = new HashMap<>();
+        HashMap<String, Float> maxKleuren = new HashMap<>();
 
         for (int i = 0; i < 10; i++) {
             Float maxValue = 0f;
-            String merksoorten = "null";
-            for (Map.Entry<String, Float> entry : merken.entrySet()) {
+            String kleursoorten = "null";
+            for (Map.Entry<String, Float> entry : kleuren.entrySet()) {
                 String key = entry.getKey();
                 Float value = entry.getValue();
                 if (value > maxValue) {
                     maxValue = value;
-                    merksoorten = key;
+                    kleursoorten = key;
                 }
             }
-            maxMerken.put(merksoorten, maxValue);
-            merken.remove(merksoorten);
+            maxKleuren.put(kleursoorten, maxValue);
+            kleuren.remove(kleursoorten);
         }
 
 
         ArrayList<Float> yData = new ArrayList();
-        //Set set = new HashSet(DataLists.merkList);
+        //Set set = new HashSet(DataLists.kleurlist);
         ArrayList<String> uniqueList = new ArrayList<String>();
-        for (Map.Entry<String, Float> entry : maxMerken.entrySet()) {
+        for (Map.Entry<String, Float> entry : maxKleuren.entrySet()) {
             uniqueList.add(entry.getKey());
             yData.add(entry.getValue());
         }
@@ -113,7 +113,7 @@ public class PieChartMain extends AppCompatActivity {
                 if (e == null)
                     return;
 
-                Toast.makeText(PieChartMain.this,
+                Toast.makeText(ColorPieChart.this,
                         //legendValues[e.getXIndex()] + " = " + e.getVal() + "%", Toast.LENGTH_SHORT).show();
                         legendValues[e.getXIndex()] + " = " + e.getVal() + "= total amount", Toast.LENGTH_SHORT).show();
             }
@@ -136,19 +136,19 @@ public class PieChartMain extends AppCompatActivity {
         ArrayList<Entry> yVals1 = new ArrayList<Entry>();
 
         for (int i = 0; i < pieChartValues.length; i++)
-        yVals1.add(new Entry(pieChartValues[i], i));
+            yVals1.add(new Entry(pieChartValues[i], i));
 
         ArrayList<String> xVals = new ArrayList<String>();
 
         for (int i = 0; i < legendValues.length; i++)
             xVals.add(legendValues[i]);
 
-        PieDataSet dataSet = new PieDataSet(yVals1, "Merken");
+        PieDataSet dataSet = new PieDataSet(yVals1, "Kleuren");
         dataSet.setSliceSpace(3);
         dataSet.setSelectionShift(5);
 
         ArrayList<Integer> colors = new ArrayList<Integer>();
-
+        
         for (int c : ColorTemplate.VORDIPLOM_COLORS)
             colors.add(c);
 

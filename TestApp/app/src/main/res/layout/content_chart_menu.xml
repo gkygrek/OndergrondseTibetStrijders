@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.onno.testapp.ChartMenu"
+    tools:showIn="@layout/activity_chart_menu"
+    android:background="@drawable/backgroundapp">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/button8"
+        android:layout_alignBaseline="@+id/buttonNeighbouurhoudChart"
+        android:layout_alignBottom="@+id/buttonNeighbouurhoudChart"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ColorChart"
+        android:id="@+id/buttonColorChart"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="12dp"
+        android:minWidth="170dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NeighbouurhoudChart"
+        android:id="@+id/buttonNeighbouurhoudChart"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:textSize="12dp"
+        android:minWidth="170dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LineChart"
+        android:id="@+id/buttonLineChart"
+        android:layout_above="@+id/buttonNeighbouurhoudChart"
+        android:layout_alignParentStart="true"
+        android:textSize="12dp"
+        android:minWidth="170dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BarChart"
+        android:id="@+id/buttonBarChart"
+        android:layout_alignTop="@+id/buttonLineChart"
+        android:layout_alignParentEnd="true"
+        android:textSize="12dp"
+        android:minWidth="170dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PieChart"
+        android:id="@+id/buttonPieChart"
+        android:layout_above="@+id/buttonLineChart"
+        android:layout_centerHorizontal="true"
+        android:textSize="12dp"
+        android:minWidth="170dp" />
+</RelativeLayout>
