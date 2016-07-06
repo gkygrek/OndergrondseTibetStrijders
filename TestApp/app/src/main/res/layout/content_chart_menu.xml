@@ -35,7 +35,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NeighbouurhoudChart"
+        android:text="NeighbourhoodChart"
         android:id="@+id/buttonNeighbouurhoudChart"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"

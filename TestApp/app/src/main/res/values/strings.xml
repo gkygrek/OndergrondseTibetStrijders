@@ -6,4 +6,5 @@
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_color_pie_chart">ColorPieChart</string>
     <string name="title_activity_chart_menu">ChartMenu</string>
+    <string name="title_activity_location_main">Map</string>
 </resources>
