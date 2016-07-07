@@ -47,6 +47,7 @@ public class MainScreen extends AppCompatActivity {
                 context.startActivity(intent);
             }
         });
+
     }
 
     @Override
