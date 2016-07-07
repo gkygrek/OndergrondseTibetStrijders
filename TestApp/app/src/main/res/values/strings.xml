@@ -4,7 +4,5 @@
     <string name="title_activity_main3">Main3Activity</string>
     <string name="title_activity_main4">Main4Activity</string>
     <string name="title_activity_main2">Main2Activity</string>
-    <string name="title_activity_color_pie_chart">ColorPieChart</string>
-    <string name="title_activity_chart_menu">ChartMenu</string>
-    <string name="title_activity_location_main">Map</string>
+    <string name="title_activity_pie_chart_main">PieChartMain</string>
 </resources>

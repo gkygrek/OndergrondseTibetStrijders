@@ -14,8 +14,7 @@ public class DeelgemMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deelgem_menu);
-
-
+        //Create buttons
         Button buttonCentrum = (Button) findViewById(R.id.centrum);
         Button buttonDelfshaven = (Button) findViewById(R.id.delfshaven);
         Button buttonOverschie = (Button) findViewById(R.id.overschie);
@@ -26,34 +25,32 @@ public class DeelgemMenu extends AppCompatActivity {
         Button buttonIjsselmonde = (Button) findViewById(R.id.ijsselmonde);
         Button buttonCharlois = (Button) findViewById(R.id.charlois);
         Button buttonHoogvliet = (Button) findViewById(R.id.hoogvliet);
-
-        buttonCentrum = setAction("centrum", buttonCentrum);
-        buttonDelfshaven = setAction("delfshaven", buttonDelfshaven);
-        buttonOverschie = setAction("overschie", buttonOverschie);
-        buttonNoord = setAction("noord", buttonNoord);
-        buttonHillegersberg = setAction("hillegersberg", buttonHillegersberg);
-        buttonKralingen = setAction("kralingen", buttonKralingen);
-        buttonFeijenoord = setAction("feijenoord", buttonFeijenoord);
-        buttonIjsselmonde = setAction("ijsselmonde", buttonIjsselmonde);
-        buttonCharlois = setAction("charlois", buttonCharlois);
-        buttonHoogvliet = setAction("hoogvliet", buttonHoogvliet);
-
+        //Set actions to the buttons
+        setAction("centrum", buttonCentrum);
+        setAction("delfshaven", buttonDelfshaven);
+        setAction("overschie", buttonOverschie);
+        setAction("noord", buttonNoord);
+        setAction("hillegersberg", buttonHillegersberg);
+        setAction("kralingen", buttonKralingen);
+        setAction("feijenoord", buttonFeijenoord);
+        setAction("ijsselmonde", buttonIjsselmonde);
+        setAction("charlois", buttonCharlois);
+        setAction("hoogvliet", buttonHoogvliet);
 
         context = this.getApplicationContext();
     }
 
-    private Button setAction(final String gem, Button button) {
+    private void setAction(final String gem, Button button) {
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, BarChartMain.class);
+                Intent intent = new Intent(context, StolenBicyclesAndBikeContainersPerMonth.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                BarChartMain.currentDeelgem = gem;
+                StolenBicyclesAndBikeContainersPerMonth.currentDeelgem = gem; //currentDeelgem string changes so only the data from the chosen button will be displayed
                 context.startActivity(intent);
             }
         });
-        return button;
     }
 
 }

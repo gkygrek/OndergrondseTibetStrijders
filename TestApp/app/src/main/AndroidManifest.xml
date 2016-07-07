@@ -2,13 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.onno.testapp">
 
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality. 
-    -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainScreen"
+            android:name=".MainMenu"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -26,50 +19,39 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".LocationMain"
+            android:label="Location"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".HeatMap"
             android:label="Heatmap"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".PieChartMain"
+            android:name=".ChartSelectionMenu"
+            android:label="ChartMenu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MostStolenBikeColors"
             android:label="PieCharts"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LineChartMain"
+            android:name=".StolenBicyclesPerMonth"
             android:label="LineChart"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".BarChartMain"
+            android:name=".StolenBicyclesAndBikeContainersPerMonth"
             android:label="BarChart"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".HoodBarChart"
+            android:name=".NeighbourhoodsWithMostBikeContainers"
             android:label="BarChart Containers"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".DataLists" />
         <activity android:name=".DeelgemMenu" />
         <activity
-            android:name=".ColorPieChart"
-            android:label="@string/title_activity_color_pie_chart"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ChartMenu"
-            android:label="ChartMenu"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
-        -->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-
-        <activity
-            android:name=".LocationMain"
-            android:label="@string/title_activity_location_main"></activity>
+            android:name=".MostStolenBikeBrands"
+            android:label="@string/title_activity_pie_chart_main"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

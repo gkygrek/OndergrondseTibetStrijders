@@ -1,111 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.onno.testapp.DeelgemMenu">
+    android:fitsSystemWindows="true"
+    tools:context=".MainMenu">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Centrum"
-        android:id="@+id/centrum"
-        android:minHeight="50dp"
-        android:minWidth="150dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+    <include layout="@layout/content_deelgem_menu" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Delfshaven"
-        android:id="@+id/delfshaven"
-        android:layout_below="@+id/centrum"
-        android:layout_centerHorizontal="true"
-        android:minHeight="50dp"
-        android:minWidth="150dp" />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.example.onno.testapp.DeelgemMenu">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Overschie"
-        android:id="@+id/overschie"
-        android:layout_below="@+id/delfshaven"
-        android:layout_centerHorizontal="true"
-        android:minHeight="50dp"
-        android:minWidth="150dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Noord"
-        android:id="@+id/noord"
-        android:layout_below="@+id/overschie"
-        android:layout_centerHorizontal="true"
-        android:minHeight="50dp"
-        android:minWidth="150dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hillegersberg"
-        android:id="@+id/hillegersberg"
-        android:layout_below="@+id/noord"
-        android:layout_centerHorizontal="true"
-        android:minHeight="50dp"
-        android:minWidth="150dp" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Centrum"
+            android:id="@+id/centrum"
+            android:minHeight="50dp"
+            android:minWidth="150dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/delfshaven"
+            android:layout_marginTop="29dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Kralingen"
-        android:id="@+id/kralingen"
-        android:layout_below="@+id/hillegersberg"
-        android:layout_alignEnd="@+id/overschie"
-        android:minHeight="50dp"
-        android:minWidth="150dp" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delfshaven"
+            android:id="@+id/delfshaven"
+            android:layout_below="@+id/centrum"
+            android:layout_centerHorizontal="true"
+            android:minHeight="50dp"
+            android:minWidth="150dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Feijenoord"
-        android:id="@+id/feijenoord"
-        android:layout_below="@+id/kralingen"
-        android:layout_alignStart="@+id/hillegersberg"
-        android:minHeight="50dp"
-        android:minWidth="150dp" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Overschie"
+            android:id="@+id/overschie"
+            android:layout_below="@+id/delfshaven"
+            android:layout_centerHorizontal="true"
+            android:minHeight="50dp"
+            android:minWidth="150dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ijsselmonde"
-        android:id="@+id/ijsselmonde"
-        android:layout_below="@+id/feijenoord"
-        android:layout_centerHorizontal="true"
-        android:minHeight="50dp"
-        android:minWidth="150dp" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Noord"
+            android:id="@+id/noord"
+            android:layout_below="@+id/overschie"
+            android:layout_centerHorizontal="true"
+            android:minHeight="50dp"
+            android:minWidth="150dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Charlois"
-        android:id="@+id/charlois"
-        android:layout_below="@+id/ijsselmonde"
-        android:layout_centerHorizontal="true"
-        android:minHeight="50dp"
-        android:minWidth="150dp" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hillegersberg"
+            android:id="@+id/hillegersberg"
+            android:layout_below="@+id/noord"
+            android:layout_centerHorizontal="true"
+            android:minHeight="50dp"
+            android:minWidth="150dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hoogvliet"
-        android:id="@+id/hoogvliet"
-        android:layout_below="@+id/charlois"
-        android:layout_alignStart="@+id/feijenoord"
-        android:minHeight="50dp"
-        android:minWidth="150dp" />
-</RelativeLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kralingen"
+            android:id="@+id/kralingen"
+            android:layout_below="@+id/hillegersberg"
+            android:layout_alignEnd="@+id/overschie"
+            android:minHeight="50dp"
+            android:minWidth="150dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Feijenoord"
+            android:id="@+id/feijenoord"
+            android:layout_below="@+id/kralingen"
+            android:layout_alignStart="@+id/hillegersberg"
+            android:minHeight="50dp"
+            android:minWidth="150dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ijsselmonde"
+            android:id="@+id/ijsselmonde"
+            android:layout_below="@+id/feijenoord"
+            android:layout_centerHorizontal="true"
+            android:minHeight="50dp"
+            android:minWidth="150dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Charlois"
+            android:id="@+id/charlois"
+            android:layout_below="@+id/ijsselmonde"
+            android:layout_centerHorizontal="true"
+            android:minHeight="50dp"
+            android:minWidth="150dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hoogvliet"
+            android:id="@+id/hoogvliet"
+            android:layout_below="@+id/charlois"
+            android:layout_alignStart="@+id/feijenoord"
+            android:minHeight="50dp"
+            android:minWidth="150dp" />
+
+
+    </RelativeLayout>
+
+
+
+</android.support.design.widget.CoordinatorLayout>

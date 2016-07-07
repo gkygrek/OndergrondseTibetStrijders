@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataLists extends AppCompatActivity {
+    //Class with the lists with the data from the csv files
 
     public static List<String> voorvalNummerList = new ArrayList<String>();
     public static List<String> kennisNameList = new ArrayList<String>();
