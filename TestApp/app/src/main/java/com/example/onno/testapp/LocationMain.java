@@ -1,5 +1,7 @@
 package com.example.onno.testapp;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -7,6 +9,8 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -18,6 +22,11 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class LocationMain extends FragmentActivity implements
         GoogleApiClient.ConnectionCallbacks,
@@ -40,9 +49,79 @@ public class LocationMain extends FragmentActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final Context context = this.getApplicationContext();
         setContentView(R.layout.activity_location_main);
         setUpMapIfNeeded();
+        Button buttonSaveLocation = (Button) findViewById(R.id.buttonSaveLocation);
+        LocVar.context = this.getApplicationContext();
+        buttonSaveLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LocVar.savedBicycleLocation = LocVar.latLng;
+                    String savedLocationFile = "CordinatenSavedLocation";
+                    String savedLocationFile2 = "CordinatenSavedLocationLongitute";
+                    String currentLatitudeFile = String.valueOf(LocVar.currentLatitude);
+                    String currentLongituteFile = String.valueOf(LocVar.currentLongitude);
 
+                    try {
+                        FileOutputStream fos = openFileOutput(savedLocationFile, Context.MODE_PRIVATE);
+                        fos.write(currentLatitudeFile.getBytes());
+                        FileOutputStream fos2 = openFileOutput(savedLocationFile2, Context.MODE_PRIVATE);
+                        fos2.write(currentLongituteFile.getBytes());
+                        fos.close();
+                        fos2.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    FileInputStream fis;
+                    try {
+                        fis = openFileInput(savedLocationFile);
+                        int c;
+                        String temp = "";
+                        while ((c = fis.read()) != -1) {
+                            temp = temp + Character.toString((char) c);
+                        }
+                        System.out.println(temp);
+                        fis.close();
+                        LocVar.bikeLatitude = Double.parseDouble(temp);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                try {
+
+                    fis = openFileInput(savedLocationFile2);
+                    int c;
+                    String temp = "";
+                    while ((c = fis.read()) != -1) {
+                        temp = temp + Character.toString((char) c);
+                    }
+                    System.out.println(temp);
+                    fis.close();
+                    LocVar.bikeLongitude = Double.parseDouble(temp);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                LocVar.bicycleSpot = new LatLng(LocVar.bikeLatitude, LocVar.bikeLongitude);
+
+                Intent intent = new Intent(context, LocationMain.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                finish();
+                context.startActivity(intent);
+            }
+        });
+
+        Button buttonDeleteLocation = (Button) findViewById(R.id.buttonDeleteLocation);
+        buttonDeleteLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMap.clear();
+                LocVar.bicycleSpot = null;
+                Intent intent = new Intent(context, LocationMain.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                finish();
+                context.startActivity(intent);
+            }
+        });
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -72,6 +151,7 @@ public class LocationMain extends FragmentActivity implements
             mGoogleApiClient.disconnect();
         }
     }
+
 
     /**
      * Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
@@ -114,17 +194,25 @@ public class LocationMain extends FragmentActivity implements
     private void handleNewLocation(Location location) {
         Log.d(TAG, location.toString());
 
-        double currentLatitude = location.getLatitude();
-        double currentLongitude = location.getLongitude();
+        LocVar.currentLatitude = location.getLatitude();
+        LocVar.currentLongitude = location.getLongitude();
 
-        LatLng latLng = new LatLng(currentLatitude, currentLongitude);
+        LatLng latLng = new LatLng(LocVar.currentLatitude, LocVar.currentLongitude);
 
-        //mMap.addMarker(new MarkerOptions().position(new LatLng(currentLatitude, currentLongitude)).title("Current Location"));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(LocVar.currentLatitude, LocVar.currentLongitude)).title("Current Location"));
         MarkerOptions options = new MarkerOptions()
                 .position(latLng)
                 .title("I am here!");
         mMap.addMarker(options);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+
+        if (!(LocVar.bicycleSpot == null)) {
+            System.out.println("jn");
+            MarkerOptions options2 = new MarkerOptions()
+                    .position(LocVar.bicycleSpot)
+                    .title("Here is your bicycle");
+            mMap.addMarker(options2);
+        }
     }
 
     @Override
